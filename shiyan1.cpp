@@ -41,10 +41,9 @@ class Line: public Point
         ~Line();
         void Display() const;
 };
-
-Line::Line(Point p1, Point p2):Point(p2)
+Line::Line(Point p1, Point p2):Point(p2), p(p1)
 {
-    p = p1;
+    cout<<"Line's Constructor called"<<endl;
 }
 Line::~Line()
 {
@@ -56,11 +55,36 @@ void Line::Display() const
     p.Display();
 }
 
+class Circle:public Point
+{
+    private:
+        int radius;
+        
+    public:
+        Circle(Point p1, int r);
+        void Display();
+};
+Circle::Circle(Point p1, int r):Point(p1)
+{
+    radius = r;
+    cout<<"Circle's Constructor called"<<endl;
+}
+void Circle::Display()
+{
+    // cout<<"The center of the circle is "<<endl;
+    Point::Display();
+    cout<<"The radius is "<<radius<<endl;
+}
+
 
 int main()
 {
     Point obj1(1, 2), obj2(3, 4);
     Line line1(obj1, obj2);
+    int r;
+    cout<<"How long is your radius?"<<endl;
+    cin>>r;
+    Circle circle1(obj1, r);
     line1.Display();
-    
+    circle1.Display();
 }
